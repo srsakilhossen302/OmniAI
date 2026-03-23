@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import '../Model/student_home_model.dart';
 import '../../MyLibrary/View/library_screen.dart';
+import '../../AIScanner/View/ai_scanner_screen.dart';
 
 class StudentHomeController extends GetxController {
   // Observables for Models
@@ -62,7 +63,7 @@ class StudentHomeController extends GetxController {
   }
 
   void openAIScanner() {
-    // Navigate to AI Scanner
+    Get.to(() => const AIScannerScreen(), transition: Transition.rightToLeft);
   }
 
   void openWriteAssignment() {
