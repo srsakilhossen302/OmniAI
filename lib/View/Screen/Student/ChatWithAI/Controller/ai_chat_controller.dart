@@ -41,17 +41,31 @@ class AIChatController extends GetxController {
     final args = Get.arguments;
 
     if (args != null) {
-      if (args['source'] != null) {
-        source.value = args['source'];
+      final String? sourceVal = args['source'];
+      if (sourceVal != null) {
+        source.value = sourceVal;
       }
-      if (args['initialMessage'] != null) {
-      messages.insert(0,
-        AIChatMessage(
-          text: args['initialMessage'],
-          isUser: false,
-          timestamp: DateTime.now(),
-        )
-      );
+      
+      final String? initialMsg = args['initialMessage'];
+      final File? initialImg = args['image'];
+
+      if (initialMsg != null || initialImg != null) {
+        // Decide if it should be a User message or an AI message based on source
+        bool isUserMsg = (sourceVal == 'teacher_home');
+
+        messages.insert(0,
+          AIChatMessage(
+            text: initialMsg ?? '',
+            isUser: isUserMsg,
+            timestamp: DateTime.now(),
+            image: initialImg,
+          )
+        );
+
+        // If it's a user message, trigger a simulated AI response
+        if (isUserMsg) {
+          _simulateAIResponse(initialMsg ?? 'Sent an image');
+        }
       }
     } else {
       messages.insert(0,
@@ -62,6 +76,20 @@ class AIChatController extends GetxController {
         )
       );
     }
+  }
+
+  void _simulateAIResponse(String promptText) {
+    isTyping.value = true;
+    Future.delayed(const Duration(seconds: 2), () {
+      isTyping.value = false;
+      messages.insert(0,
+        AIChatMessage(
+          text: 'This is a simulated AI response to your request: "$promptText".\n\nI can help you with professional tasks like drafting emails, summarizing business reports, or planning projects!',
+          isUser: false,
+          timestamp: DateTime.now(),
+        )
+      );
+    });
   }
 
   @override
@@ -94,15 +122,6 @@ class AIChatController extends GetxController {
     isTyping.value = true;
     
     // Simulate AI generating a response
-    Future.delayed(const Duration(seconds: 2), () {
-      isTyping.value = false;
-      messages.insert(0,
-        AIChatMessage(
-          text: 'This is a simulated AI response to: "$prompt".\n\nI can format **bold text**, *italics*, and render seamlessly like ChatGPT.',
-          isUser: false,
-          timestamp: DateTime.now(),
-        )
-      );
-    });
+    _simulateAIResponse(prompt);
   }
 }

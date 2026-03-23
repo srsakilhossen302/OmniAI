@@ -4,6 +4,7 @@ import '../../../Utils/AppColors/app_colors.dart';
 import '../../../Controller/role_selection_controller.dart';
 
 import '../Student/StudentHome/View/student_home_screen.dart';
+import '../Teacher/TeacherHome/View/teacher_home_screen.dart';
 
 class RoleSelectionScreen extends GetView<RoleSelectionController> {
   const RoleSelectionScreen({super.key});
@@ -82,7 +83,7 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
                 _buildRoleCard(
                   'job_holder',
                   'job_holder_desc',
-                  Icons.business_center_outlined,
+                  Icons.school_rounded,
                 ),
                 const SizedBox(height: 30),
 
@@ -120,7 +121,7 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
                           if (controller.isStudent) {
                             Get.to(() => const StudentHomeScreen());
                           } else {
-                            // For now, job holder navigation can be added later
+                            Get.to(() => const TeacherHomeScreen());
                           }
                         }
                       : null,

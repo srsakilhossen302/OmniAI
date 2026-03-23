@@ -105,6 +105,7 @@ class RoleSelectionController extends GetxController {
 
   bool get isRoleSelected => selectedRole.value.isNotEmpty;
   bool get isStudent => selectedRole.value == 'student';
+  bool get isTeacher => selectedRole.value == 'job_holder';
   bool get isOthersSelected => selectedClass.value.toLowerCase() == 'others';
   bool get isDiplomaSelected => selectedClass.value.toLowerCase() == 'diploma';
   
@@ -117,7 +118,7 @@ class RoleSelectionController extends GetxController {
 
   bool get canContinue {
     if (!isRoleSelected) return false;
-    if (selectedRole.value == 'job_holder') {
+    if (isTeacher) {
       return profession.value.isNotEmpty;
     }
     if (isStudent) {

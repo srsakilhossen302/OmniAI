@@ -301,6 +301,7 @@ class AIChatScreen extends StatelessWidget {
             Obx(() {
               if (controller.source.value.isEmpty || 
                   controller.source.value == 'problem_solution' || 
+                  controller.source.value == 'teacher_home' || 
                   controller.source.value == 'chat_with_ai') {
                 return const SizedBox.shrink(); // Hide if accessed from home tiles
               }
