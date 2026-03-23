@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Controller/teacher_home_controller.dart';
+import 'package:omniai/View/Widget/custom_drawer.dart';
 
 class TeacherHomeScreen extends StatefulWidget {
   const TeacherHomeScreen({super.key});
@@ -11,6 +12,7 @@ class TeacherHomeScreen extends StatefulWidget {
 
 class _TeacherHomeScreenState extends State<TeacherHomeScreen>
     with SingleTickerProviderStateMixin {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
 
@@ -41,6 +43,12 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen>
     final controller = Get.put(TeacherHomeController());
 
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: Obx(() => CustomDrawer(
+            userName: controller.teacherProfile.value?.name ?? 'Teacher Name',
+            userEmail: controller.teacherProfile.value?.email ?? 'teacher@omniai.edu',
+            onLogout: () => controller.logout(),
+          )),
       backgroundColor: const Color(0xFFF8FAFC),
       body: Column(
         children: [
@@ -173,14 +181,17 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen>
             children: [
               Row(
                 children: [
-                   Container(
-                    width: 44,
-                    height: 44,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.15),
-                      shape: BoxShape.circle,
+                  GestureDetector(
+                    onTap: () => _scaffoldKey.currentState?.openDrawer(),
+                    child: Container(
+                      width: 44,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.15),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(Icons.person_rounded, color: Colors.white, size: 28),
                     ),
-                    child: const Icon( Icons.business_center_rounded, color: Colors.white, size: 28),
                   ),
                   const SizedBox(width: 12),
                   Obx(() => Column(
@@ -198,10 +209,7 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen>
                   )),
                 ],
               ),
-              IconButton(
-                onPressed: () => controller.logout(),
-                icon: const Icon(Icons.logout_rounded, color: Colors.white, size: 24),
-              ),
+              const SizedBox.shrink(),
             ],
           ),
           const SizedBox(height: 32),

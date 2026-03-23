@@ -21,6 +21,7 @@ class StudentHomeController extends GetxController {
     // Simulating fetching data from an API or database
     studentProfile.value = StudentProfileModel(
       name: 'Class 6 Student',
+      email: 'student@omniai.edu',
       greeting: 'good_morning',
     );
 

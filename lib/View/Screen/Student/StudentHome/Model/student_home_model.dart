@@ -1,10 +1,12 @@
 class StudentProfileModel {
   final String name;
+  final String email;
   final String greeting;
   final String avatarUrl;
 
   StudentProfileModel({
     required this.name,
+    required this.email,
     required this.greeting,
     this.avatarUrl = '',
   });
