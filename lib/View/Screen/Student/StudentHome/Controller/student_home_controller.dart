@@ -3,6 +3,7 @@ import '../Model/student_home_model.dart';
 import '../../MyLibrary/View/library_screen.dart';
 import '../../AIScanner/View/ai_scanner_screen.dart';
 import '../../ChatWithAI/View/ai_chat_screen.dart';
+import '../../AssignmentWriter/View/assignment_writer_screen.dart';
 
 class StudentHomeController extends GetxController {
   // Observables for Models
@@ -68,7 +69,7 @@ class StudentHomeController extends GetxController {
   }
 
   void openWriteAssignment() {
-    // Navigate to Write Assignment
+    Get.to(() => const AssignmentWriterScreen(), transition: Transition.rightToLeft);
   }
 
   void openExamPrep() {
