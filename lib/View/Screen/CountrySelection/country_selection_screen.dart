@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:country_picker/country_picker.dart';
 import '../../../Utils/AppColors/app_colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../Utils/StaticString/static_string.dart';
 import '../RoleSelection/role_selection_screen.dart';
 
@@ -188,7 +189,11 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
                     width: double.infinity,
                     height: 56,
                     child: ElevatedButton(
-                      onPressed: _selectedCountry == null ? null : () {
+                      onPressed: _selectedCountry == null ? null : () async {
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.setString('selected_country_code', _selectedCountry!.countryCode);
+                        
+                        if (!mounted) return;
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const RoleSelectionScreen()),
