@@ -113,7 +113,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen>
                 // Extra Banners
                 _buildAnimatedItem(
                   delay: 5,
-                  child: _buildLibraryAndChatCards(),
+                  child: _buildLibraryAndChatCards(controller),
                 ),
               ],
             ),
@@ -371,11 +371,11 @@ class _StudentHomeScreenState extends State<StudentHomeScreen>
     );
   }
 
-  Widget _buildLibraryAndChatCards() {
+  Widget _buildLibraryAndChatCards(StudentHomeController controller) {
     return Column(
       children: [
         _BouncingCard(
-          onTap: () {},
+          onTap: controller.openMyLibrary,
           pressedColor: const Color(0xFF1E2A7A),
           child: Container(
             width: double.infinity,
@@ -421,7 +421,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen>
         ),
         const SizedBox(height: 16),
         _BouncingCard(
-          onTap: () {},
+          onTap: controller.openChatWithAI,
           pressedColor: const Color(0xFF439443),
           child: Container(
             width: double.infinity,

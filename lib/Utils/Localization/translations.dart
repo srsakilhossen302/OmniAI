@@ -57,6 +57,11 @@ class AppTranslations extends Translations {
           'my_library_desc': 'Access your saved PDFs and notes',
           'chat_with_ai': 'Chat with AI',
           'chat_with_ai_desc': 'Ask questions and get instant answers',
+          'search_library': 'Search your library...',
+          'all': 'All',
+          'pdfs': 'PDFs',
+          'scans': 'Scans',
+          'plans': 'Plans',
         },
         'bn_BD': {
           'choose_language': 'আপনার ভাষা নির্বাচন করুন',
@@ -112,6 +117,11 @@ class AppTranslations extends Translations {
           'my_library_desc': 'আপনার সেভ করা পিডিএফ এবং নোটগুলি দেখুন',
           'chat_with_ai': 'এআই এর সাথে চ্যাট',
           'chat_with_ai_desc': 'প্রশ্ন জিজ্ঞাসা করুন এবং তাৎক্ষণিক উত্তর পান',
+          'search_library': 'আপনার লাইব্রেরি অনুসন্ধান করুন...',
+          'all': 'সব',
+          'pdfs': 'পিডিএফ',
+          'scans': 'স্ক্যান',
+          'plans': 'প্ল্যান',
         },
         'hi_IN': {
           'choose_language': 'अपनी भाषा चुनें',
@@ -167,6 +177,11 @@ class AppTranslations extends Translations {
           'my_library_desc': 'अपने सहेजे गए पीडीएफ और नोट्स देखें',
           'chat_with_ai': 'एआई के साथ चैट करें',
           'chat_with_ai_desc': 'प्रश्न पूछें और तुरंत उत्तर प्राप्त करें',
+          'search_library': 'अपनी लाइब्रेरी में खोजें...',
+          'all': 'सभी',
+          'pdfs': 'पीडीएफ',
+          'scans': 'स्कैन',
+          'plans': 'योजनाएं',
         },
       };
 }

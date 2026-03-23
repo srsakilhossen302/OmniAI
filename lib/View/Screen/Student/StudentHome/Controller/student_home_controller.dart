@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import '../Model/student_home_model.dart';
+import '../../MyLibrary/View/library_screen.dart';
 
 class StudentHomeController extends GetxController {
   // Observables for Models
@@ -49,7 +50,15 @@ class StudentHomeController extends GetxController {
   }
 
   void viewAllActivity() {
-    // Navigate to all activity screen
+    Get.to(() => const LibraryScreen(), transition: Transition.rightToLeft);
+  }
+
+  void openMyLibrary() {
+    Get.to(() => const LibraryScreen(), transition: Transition.rightToLeft);
+  }
+
+  void openChatWithAI() {
+    // Navigate to Chat
   }
 
   void openAIScanner() {
