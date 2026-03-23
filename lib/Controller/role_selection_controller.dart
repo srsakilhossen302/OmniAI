@@ -8,6 +8,7 @@ class RoleSelectionController extends GetxController {
   var selectedSemester = ''.obs;
   var selectedDepartment = ''.obs;
   var selectedGroup = ''.obs;
+  var profession = ''.obs;
   var countryCode = ''.obs; // Start empty to force update
 
   @override
@@ -86,6 +87,7 @@ class RoleSelectionController extends GetxController {
     selectedDepartment.value = '';
     selectedGroup.value = '';
     customClass.value = '';
+    profession.value = '';
   }
 
   void selectDepartment(String? dept) {
@@ -115,6 +117,9 @@ class RoleSelectionController extends GetxController {
 
   bool get canContinue {
     if (!isRoleSelected) return false;
+    if (selectedRole.value == 'job_holder') {
+      return profession.value.isNotEmpty;
+    }
     if (isStudent) {
       if (selectedClass.value.isEmpty) return false;
       if (isOthersSelected && customClass.value.isEmpty) return false;

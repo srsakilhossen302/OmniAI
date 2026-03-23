@@ -87,6 +87,15 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
                 ),
                 const SizedBox(height: 30),
 
+                 // Dynamic Job Holder Section
+                Obx(() {
+                  if (controller.selectedRole.value == 'job_holder') {
+                    return _buildJobHolderExtraSection();
+                  }
+                  return const SizedBox.shrink();
+                }),
+                const SizedBox(height: 20),
+
                 // Dynamic Student Section
                 Obx(() {
                   if (controller.isStudent) {
@@ -131,6 +140,58 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
                   ),
                 ),
               )),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildJobHolderExtraSection() {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'your_profession'.tr,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: AppColors.primaryColor,
+            ),
+          ),
+          const SizedBox(height: 20),
+          TextField(
+            onChanged: (val) => controller.profession.value = val,
+            decoration: InputDecoration(
+              hintText: 'profession_hint'.tr,
+              filled: true,
+              fillColor: Colors.grey.shade100,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            'profession_sub_caption'.tr,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey.shade500,
+              height: 1.4,
+            ),
+          ),
         ],
       ),
     );

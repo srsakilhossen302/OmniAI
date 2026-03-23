@@ -37,6 +37,9 @@ class AppTranslations extends Translations {
           'science': 'Science',
           'commerce': 'Commerce',
           'humanities': 'Humanities',
+          'your_profession': 'Your Profession',
+          'profession_hint': 'e.g., Software Engineer, Teacher, Doctor',
+          'profession_sub_caption': 'Enter your current profession or target job role',
         },
         'bn_BD': {
           'choose_language': 'আপনার ভাষা নির্বাচন করুন',
@@ -72,6 +75,9 @@ class AppTranslations extends Translations {
           'science': 'বিজ্ঞান',
           'commerce': 'ব্যবসায় শিক্ষা',
           'humanities': 'মানবিক',
+          'your_profession': 'আপনার পেশা',
+          'profession_hint': 'যেমন: সফটওয়্যার ইঞ্জিনিয়ার, শিক্ষক, ডাক্তার',
+          'profession_sub_caption': 'আপনার বর্তমান পেশা বা টার্গেট জব রোল লিখুন',
         },
         'hi_IN': {
           'choose_language': 'अपनी भाषा चुनें',
@@ -82,7 +88,7 @@ class AppTranslations extends Translations {
           'choose_country': 'अपना देश चुनें',
           'continue': 'जारी रखें',
           'secure_msg': 'आपका डेटा सुरक्षित है और इसका उपयोग केवल आपके सीखने के अनुभव को बढ़ाने के लिए किया जाएगा',
-          'get_started': 'शुरू करें',
+          'get_started': 'शুরু करें',
           'search': 'खोजें',
           'search_hint': 'खोजने के लिए टाइप करना शुरू करें',
           'create_profile': 'अपनी प्रोफाइल बनाएं',
@@ -107,6 +113,9 @@ class AppTranslations extends Translations {
           'science': 'विज्ञान',
           'commerce': 'वाणिज्य',
           'humanities': 'मानविकी',
+          'your_profession': 'आपका पेशा',
+          'profession_hint': 'जैसे, सॉफ्टवेयर इंजीनियर, शिक्षक, डॉक्टर',
+          'profession_sub_caption': 'अपना वर्तमान पेशा या लक्षित नौकरी भूमिका दर्ज करें',
         },
       };
 }
