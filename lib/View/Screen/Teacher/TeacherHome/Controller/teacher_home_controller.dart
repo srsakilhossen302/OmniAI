@@ -47,7 +47,7 @@ class TeacherHomeController extends GetxController {
     // Mock data for now
     teacherProfile.value = TeacherProfileModel(
       name: 'hj hjj',
-      greeting: 'Good Morning',
+      greeting: 'good_morning',
       email: 'teacher@omniai.edu',
     );
   }

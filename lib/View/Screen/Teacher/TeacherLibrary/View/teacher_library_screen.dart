@@ -58,11 +58,11 @@ class TeacherLibraryScreen extends StatelessWidget {
             children: [
               IconButton(onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back, color: Colors.white, size: 24)),
               const SizedBox(width: 8),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('My Library', style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
-                  Text('Your saved content and notes', style: TextStyle(color: Colors.white70, fontSize: 13)),
+                   Text('my_library'.tr, style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+                   Text('library_subtitle'.tr, style: const TextStyle(color: Colors.white70, fontSize: 13)),
                 ],
               ),
             ],
@@ -78,10 +78,10 @@ class TeacherLibraryScreen extends StatelessWidget {
             child: TextField(
               onChanged: (val) => controller.searchQuery.value = val,
               style: const TextStyle(color: Colors.white),
-              decoration: const InputDecoration(
-                icon: Icon(Icons.search, color: Colors.white54, size: 22),
-                hintText: 'Search your library...',
-                hintStyle: TextStyle(color: Colors.white54),
+              decoration: InputDecoration(
+                icon: const Icon(Icons.search, color: Colors.white54, size: 22),
+                hintText: 'search_library'.tr,
+                hintStyle: const TextStyle(color: Colors.white54),
                 border: InputBorder.none,
               ),
             ),
@@ -110,7 +110,7 @@ class TeacherLibraryScreen extends StatelessWidget {
                   boxShadow: isSelected ? [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 6, offset: const Offset(0, 2))] : [],
                 ),
                 child: Text(
-                  '$filter (${controller.getCount(filter)})',
+                  '${filter.toLowerCase().tr} (${controller.getCount(filter)})',
                   style: TextStyle(color: isSelected ? Colors.black87 : Colors.grey.shade600, fontWeight: isSelected ? FontWeight.bold : FontWeight.normal, fontSize: 13),
                 ),
               ),

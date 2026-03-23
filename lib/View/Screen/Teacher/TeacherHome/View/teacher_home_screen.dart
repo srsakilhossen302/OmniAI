@@ -59,19 +59,18 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen>
                   children: [
                     const Icon(Icons.business_center_outlined, size: 20, color: Color(0xFF0D9488)),
                     const SizedBox(width: 8),
-                    const Text(
-                      'The Work Hub',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF0D9488)),
+                    Text(
+                      'the_work_hub'.tr,
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF0D9488)),
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
                 _buildAnimatedItem(
                   delay: 0,
                   child: _buildActionCard(
-                    title: 'AI Professional Assistant',
-                    subtitle: 'Complex queries, document analysis & brainstorming',
-                    icon: Icons.chat_bubble_outline_rounded,
+                    title: 'ai_prof_assistant'.tr,
+                    subtitle: 'ai_prof_assistant_desc'.tr,
+                    icon: Icons.auto_awesome_rounded,
                     iconColor: const Color(0xFF10B981),
                     onTap: () => controller.openAIAssistant(),
                   ),
@@ -80,30 +79,8 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen>
                 _buildAnimatedItem(
                   delay: 1,
                   child: _buildActionCard(
-                    title: 'Project & Strategy Planner',
-                    subtitle: 'Generate roadmaps, timelines & task lists',
-                    icon: Icons.folder_copy_outlined,
-                    iconColor: const Color(0xFF0D9488),
-                    onTap: () {},
-                  ),
-                ),
-                const SizedBox(height: 20),
-                _buildAnimatedItem(
-                  delay: 2,
-                  child: _buildActionCard(
-                    title: 'Problem Solver',
-                    subtitle: 'Root cause analysis & step-by-step solutions',
-                    icon: Icons.error_outline_rounded,
-                    iconColor: const Color(0xFFF59E0B),
-                    onTap: () {},
-                  ),
-                ),
-                const SizedBox(height: 20),
-                _buildAnimatedItem(
-                  delay: 3,
-                  child: _buildActionCard(
-                    title: 'Quiz/Question Generator',
-                    subtitle: 'Extract key points & create exam questions',
+                    title: 'quiz_gen'.tr,
+                    subtitle: 'quiz_gen_desc'.tr,
                     icon: Icons.quiz_outlined,
                     iconColor: const Color(0xFF8B5CF6),
                     onTap: () => controller.openQuestionGenerator(),
@@ -111,10 +88,10 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen>
                 ),
                 const SizedBox(height: 20),
                 _buildAnimatedItem(
-                  delay: 4,
+                  delay: 3,
                   child: _buildActionCard(
-                    title: 'Report & Assignment Drafter',
-                    subtitle: 'Professional reports & academic assignments',
+                    title: 'report_drafter'.tr,
+                    subtitle: 'report_drafter_desc'.tr,
                     icon: Icons.article_outlined,
                     iconColor: const Color(0xFF0EA5E9),
                     onTap: () {},
@@ -122,10 +99,10 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen>
                 ),
                 const SizedBox(height: 20),
                 _buildAnimatedItem(
-                  delay: 5,
+                  delay: 4,
                   child: _buildActionCard(
-                    title: 'My Workspace',
-                    subtitle: 'Active projects, reports & question papers',
+                    title: 'my_workspace_teacher'.tr,
+                    subtitle: 'my_workspace_teacher_desc'.tr,
                     icon: Icons.view_headline_rounded,
                     iconColor: const Color(0xFF1E3A8A),
                     onTap: () => controller.openLibrary(),
@@ -210,7 +187,7 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        controller.teacherProfile.value?.greeting ?? 'Good Morning',
+                        (controller.teacherProfile.value?.greeting ?? 'good_morning').tr,
                         style: const TextStyle(color: Colors.white70, fontSize: 13),
                       ),
                       Text(
@@ -228,9 +205,9 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen>
             ],
           ),
           const SizedBox(height: 32),
-          const Text(
-            'Ready to optimize your\nworkflow today?',
-            style: TextStyle(
+          Text(
+            'optimize_workflow'.tr,
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 26,
               fontWeight: FontWeight.bold,
@@ -299,19 +276,19 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen>
               children: [
                 const Icon(Icons.access_time_filled_rounded, size: 20, color: Color(0xFF0D9488)),
                 const SizedBox(width: 8),
-                const Text(
-                  'Recent Work',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF0D9488)),
+                Text(
+                  'recent_activity'.tr,
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF0D9488)),
                 ),
               ],
             ),
             TextButton(
               onPressed: () => controller.openLibrary(),
-              child: const Row(
+              child: Row(
                 children: [
-                  Text('View All', style: TextStyle(color: Color(0xFF0EA5E9), fontWeight: FontWeight.bold)),
-                  SizedBox(width: 4),
-                  Icon(Icons.arrow_forward_rounded, size: 14, color: Color(0xFF0EA5E9)),
+                  Text('view_all'.tr, style: const TextStyle(color: Color(0xFF0EA5E9), fontWeight: FontWeight.bold)),
+                  const SizedBox(width: 4),
+                  const Icon(Icons.arrow_forward_rounded, size: 14, color: Color(0xFF0EA5E9)),
                 ],
               ),
             ),
