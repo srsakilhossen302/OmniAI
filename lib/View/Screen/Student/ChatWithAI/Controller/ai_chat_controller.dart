@@ -12,34 +12,25 @@ class AIChatController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Start with a generated scanner response
-    messages.insert(0,
-      AIChatMessage(
-        text: '''**Solution: Quadratic Equation**
+    final args = Get.arguments;
 
-To solve **x² + 5x + 6 = 0**, we can use the factoring method.
-
-### Step 1: Identify the equation
-The equation is in standard form: **ax² + bx + c = 0**
-Where:
-- a = **1**
-- b = **5**
-- c = **6**
-
-### Step 2: Factor the equation
-We need to find two numbers that:
-- Multiply to give **c (6)**
-- Add up to give **b (5)**
-
-The numbers are **2** and **3** because:
-`2 + 3 = 5`
-`2 × 3 = 6`
-
-Is there anything else you need help with?''',
-        isUser: false,
-        timestamp: DateTime.now(),
-      )
-    );
+    if (args != null && args['initialMessage'] != null) {
+      messages.insert(0,
+        AIChatMessage(
+          text: args['initialMessage'],
+          isUser: false,
+          timestamp: DateTime.now(),
+        )
+      );
+    } else {
+      messages.insert(0,
+        AIChatMessage(
+          text: 'Hello! I am OmniAI, your intelligent companion.\n\nI can help you:\n- Solve math equations\n- Draft complete structured assignments\n- Explain complex topics\n\nHow can I help you today?',
+          isUser: false,
+          timestamp: DateTime.now(),
+        )
+      );
+    }
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../ChatWithAI/View/ai_chat_screen.dart';
 
 class AssignmentWriterController extends GetxController {
   final topicController = TextEditingController();
@@ -27,12 +28,37 @@ class AssignmentWriterController extends GetxController {
     }
 
     isGenerating.value = true;
+    final topic = topicController.text.trim();
     
-    // Simulate generation delay
+    // Simulate AI generation delay
     Future.delayed(const Duration(seconds: 2), () {
       isGenerating.value = false;
-      // TODO: navigate to a generated result or chat screen
-      Get.snackbar('Success', 'Assignment generated successfully!', snackPosition: SnackPosition.BOTTOM);
+      
+      final String generatedMarkdown = '''# Assignment: $topic
+
+## Introduction
+This assignment explores the topic of "$topic" in depth, providing a comprehensive understanding of its key concepts, applications, and significance in the field.
+
+## Objectives
+1. Understand the fundamental concepts related to $topic
+2. Analyze the practical applications and real-world examples
+3. Evaluate the importance and impact of $topic
+4. Develop critical thinking skills through research and analysis
+
+## Main Content
+### Section 1: Background and Context
+$topic is an important subject that has significant relevance in modern education and professional settings. Understanding its foundation helps us appreciate its broader implications and applications.
+
+Key points to consider:
+- Historical development and evolution
+- Core principles and theories
+- Current trends and developments''';
+
+      Get.to(() => const AIChatScreen(), arguments: {'initialMessage': generatedMarkdown});
+      
+      // Clear after sending so when user comes back it is fresh
+      topicController.clear();
+      hasText.value = false;
     });
   }
 

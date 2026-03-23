@@ -94,8 +94,28 @@ class AIScannerController extends GetxController {
     await Future.delayed(const Duration(milliseconds: 2500));
     isProcessing.value = false;
     
-    // Route to results page showing the nice chat answer
-    Get.to(() => const AIChatScreen(), transition: Transition.rightToLeft);
+    final String mathSolution = '''**Solution: Quadratic Equation**
+
+To solve **x² + 5x + 6 = 0**, we can use the factoring method.
+
+### Step 1: Identify the equation
+The equation is in standard form: **ax² + bx + c = 0**
+Where:
+- a = **1**
+- b = **5**
+- c = **6**
+
+### Step 2: Factor the equation
+We need to find two numbers that:
+- Multiply to give **c (6)**
+- Add up to give **b (5)**
+
+The numbers are **2** and **3** because:
+`2 + 3 = 5`
+`2 × 3 = 6`''';
+
+    // Route to results page showing the nice chat answer via arguments
+    Get.to(() => const AIChatScreen(), arguments: {'initialMessage': mathSolution}, transition: Transition.rightToLeft);
   }
 
   void retake() {
