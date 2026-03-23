@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import '../../AIScanner/View/ai_scanner_screen.dart';
+import '../../AssignmentWriter/View/assignment_writer_screen.dart';
 import '../Controller/ai_chat_controller.dart';
 import '../Model/ai_chat_model.dart';
 
@@ -234,20 +235,38 @@ class AIChatScreen extends StatelessWidget {
       child: SafeArea(
         child: Row(
           children: [
-            GestureDetector(
-              onTap: () {
-                Get.to(() => const AIScannerScreen());
-              },
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                  color: Color(0xFFEFF6FF), // very light blue background
-                  shape: BoxShape.circle,
+            Obx(() {
+              if (controller.source.value.isEmpty) {
+                return const SizedBox.shrink(); // Hide if accessed locally
+              }
+              
+              Widget icon;
+              VoidCallback onTap;
+              
+              if (controller.source.value == 'scanner') {
+                icon = const Icon(Icons.camera_alt_outlined, color: Color(0xFF3B82F6), size: 24);
+                onTap = () => Get.to(() => const AIScannerScreen());
+              } else {
+                // assignment writer
+                icon = const Icon(Icons.edit_document, color: Color(0xFF3B82F6), size: 24);
+                onTap = () => Get.to(() => const AssignmentWriterScreen());
+              }
+              
+              return Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: GestureDetector(
+                  onTap: onTap,
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFEFF6FF), // very light blue background
+                      shape: BoxShape.circle,
+                    ),
+                    child: icon,
+                  ),
                 ),
-                child: const Icon(Icons.camera_alt_outlined, color: Color(0xFF3B82F6), size: 24),
-              ),
-            ),
-            const SizedBox(width: 12),
+              );
+            }),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(

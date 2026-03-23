@@ -54,7 +54,10 @@ Key points to consider:
 - Core principles and theories
 - Current trends and developments''';
 
-      Get.to(() => const AIChatScreen(), arguments: {'initialMessage': generatedMarkdown});
+      Get.to(() => const AIChatScreen(), arguments: {
+        'initialMessage': generatedMarkdown,
+        'source': 'assignment'
+      });
       
       // Clear after sending so when user comes back it is fresh
       topicController.clear();

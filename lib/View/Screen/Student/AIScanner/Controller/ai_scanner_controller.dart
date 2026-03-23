@@ -115,7 +115,10 @@ The numbers are **2** and **3** because:
 `2 × 3 = 6`''';
 
     // Route to results page showing the nice chat answer via arguments
-    Get.to(() => const AIChatScreen(), arguments: {'initialMessage': mathSolution}, transition: Transition.rightToLeft);
+    Get.to(() => const AIChatScreen(), arguments: {
+      'initialMessage': mathSolution,
+      'source': 'scanner'
+    }, transition: Transition.rightToLeft);
   }
 
   void retake() {

@@ -8,13 +8,19 @@ class AIChatController extends GetxController {
   
   // Observable list to support real chat UI like ChatGPT
   final messages = <AIChatMessage>[].obs;
+  
+  final source = ''.obs;
 
   @override
   void onInit() {
     super.onInit();
     final args = Get.arguments;
 
-    if (args != null && args['initialMessage'] != null) {
+    if (args != null) {
+      if (args['source'] != null) {
+        source.value = args['source'];
+      }
+      if (args['initialMessage'] != null) {
       messages.insert(0,
         AIChatMessage(
           text: args['initialMessage'],
@@ -22,6 +28,7 @@ class AIChatController extends GetxController {
           timestamp: DateTime.now(),
         )
       );
+      }
     } else {
       messages.insert(0,
         AIChatMessage(
