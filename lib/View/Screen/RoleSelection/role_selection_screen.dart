@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import '../../../Utils/AppColors/app_colors.dart';
 import '../../../Controller/role_selection_controller.dart';
 
+import '../Student/StudentHome/student_home_screen.dart';
+
 class RoleSelectionScreen extends GetView<RoleSelectionController> {
   const RoleSelectionScreen({super.key});
 
@@ -116,7 +118,11 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
                   height: 56,
                   child: ElevatedButton(
                     onPressed: controller.canContinue ? () {
-                      // Navigate to next (e.g., Auth or Home)
+                      if (controller.isStudent) {
+                        Get.to(() => const StudentHomeScreen());
+                      } else {
+                        // For now, job holder navigation can be added later
+                      }
                     } : null,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFA5D6A7), // Green from screenshot
