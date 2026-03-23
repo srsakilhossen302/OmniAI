@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../../Utils/AppColors/app_colors.dart';
 import '../../../Controller/role_selection_controller.dart';
 
-import '../Student/StudentHome/student_home_screen.dart';
+import '../Student/StudentHome/View/student_home_screen.dart';
 
 class RoleSelectionScreen extends GetView<RoleSelectionController> {
   const RoleSelectionScreen({super.key});
@@ -11,7 +11,7 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
   @override
   Widget build(BuildContext context) {
     // Force a fresh controller to ensure the country-specific logic re-runs on entry
-    Get.delete<RoleSelectionController>(force: true); 
+    Get.delete<RoleSelectionController>(force: true);
     final controller = Get.put(RoleSelectionController());
 
     return Scaffold(
@@ -42,10 +42,7 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
                 const SizedBox(height: 10),
                 Text(
                   'tell_us'.tr,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.white70,
-                  ),
+                  style: const TextStyle(fontSize: 16, color: Colors.white70),
                 ),
               ],
             ),
@@ -89,7 +86,7 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
                 ),
                 const SizedBox(height: 30),
 
-                 // Dynamic Job Holder Section
+                // Dynamic Job Holder Section
                 Obx(() {
                   if (controller.selectedRole.value == 'job_holder') {
                     return _buildJobHolderExtraSection();
@@ -111,41 +108,50 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
           ),
 
           // Sign Up & Continue Button
-          Obx(() => Padding(
-                padding: const EdgeInsets.fromLTRB(24, 0, 24, 40),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: ElevatedButton(
-                    onPressed: controller.canContinue ? () {
-                      if (controller.isStudent) {
-                        Get.to(() => const StudentHomeScreen());
-                      } else {
-                        // For now, job holder navigation can be added later
-                      }
-                    } : null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFA5D6A7), // Green from screenshot
-                      foregroundColor: Colors.white,
-                      disabledBackgroundColor: Colors.grey.shade300,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'signup_continue'.tr,
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 10),
-                        const Icon(Icons.arrow_forward, size: 20),
-                      ],
+          Obx(
+            () => Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 40),
+              child: SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: controller.canContinue
+                      ? () {
+                          if (controller.isStudent) {
+                            Get.to(() => const StudentHomeScreen());
+                          } else {
+                            // For now, job holder navigation can be added later
+                          }
+                        }
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(
+                      0xFFA5D6A7,
+                    ), // Green from screenshot
+                    foregroundColor: Colors.white,
+                    disabledBackgroundColor: Colors.grey.shade300,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'signup_continue'.tr,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      const Icon(Icons.arrow_forward, size: 20),
+                    ],
+                  ),
                 ),
-              )),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -217,57 +223,21 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
           ),
         ],
       ),
-      child: Obx(() => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'select_class'.tr,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: AppColors.primaryColor,
-            ),
-          ),
-          const SizedBox(height: 20),
-          
-          // Dropdown
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade100,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
-                isExpanded: true,
-                hint: Text('choose_class_hint'.tr),
-                value: controller.selectedClass.value.isEmpty ? null : controller.selectedClass.value,
-                items: controller.classOptions.map((String value) {
-                  String label = value;
-                  if (value.toLowerCase() == 'others') label = 'others'.tr;
-                  if (value.toLowerCase() == 'diploma') label = 'diploma'.tr;
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(label),
-                  );
-                }).toList(),
-                onChanged: (val) => controller.selectClass(val),
-              ),
-            ),
-          ),
-
-          // Dynamic Group Selection (BD Class 9-12)
-          if (controller.showGroupSelection) ...[
-            const SizedBox(height: 16),
+      child: Obx(
+        () => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             Text(
-              'select_group'.tr,
+              'select_class'.tr,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: AppColors.primaryColor,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 20),
+
+            // Dropdown
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
@@ -277,59 +247,29 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<String>(
                   isExpanded: true,
-                  hint: Text('group_hint'.tr),
-                  value: controller.selectedGroup.value.isEmpty ? null : controller.selectedGroup.value,
-                  items: controller.groupOptions.map((String value) {
+                  hint: Text('choose_class_hint'.tr),
+                  value: controller.selectedClass.value.isEmpty
+                      ? null
+                      : controller.selectedClass.value,
+                  items: controller.classOptions.map((String value) {
+                    String label = value;
+                    if (value.toLowerCase() == 'others') label = 'others'.tr;
+                    if (value.toLowerCase() == 'diploma') label = 'diploma'.tr;
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value.tr),
+                      child: Text(label),
                     );
                   }).toList(),
-                  onChanged: (val) => controller.selectGroup(val),
-                ),
-              ),
-            ),
-          ],
-
-          // Conditional Department & Semester Selection (for Diploma)
-          if (controller.isDiplomaSelected) ...[
-            const SizedBox(height: 16),
-             Text(
-              'select_department'.tr,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primaryColor,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton<String>(
-                  isExpanded: true,
-                  hint: Text('department_hint'.tr),
-                  value: controller.selectedDepartment.value.isEmpty ? null : controller.selectedDepartment.value,
-                  items: controller.departmentOptions.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value == 'others' ? 'others'.tr : value),
-                    );
-                  }).toList(),
-                  onChanged: (val) => controller.selectDepartment(val),
+                  onChanged: (val) => controller.selectClass(val),
                 ),
               ),
             ),
 
-            // Only show semester if department is selected
-            if (controller.selectedDepartment.value.isNotEmpty) ...[
+            // Dynamic Group Selection (BD Class 9-12)
+            if (controller.showGroupSelection) ...[
               const SizedBox(height: 16),
               Text(
-                'select_semester'.tr,
+                'select_group'.tr,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -346,39 +286,115 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     isExpanded: true,
-                    hint: Text('semester_hint'.tr),
-                    value: controller.selectedSemester.value.isEmpty ? null : controller.selectedSemester.value,
-                    items: controller.semesterOptions.map((String value) {
+                    hint: Text('group_hint'.tr),
+                    value: controller.selectedGroup.value.isEmpty
+                        ? null
+                        : controller.selectedGroup.value,
+                    items: controller.groupOptions.map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Text(value),
+                        child: Text(value.tr),
                       );
                     }).toList(),
-                    onChanged: (val) => controller.selectSemester(val),
+                    onChanged: (val) => controller.selectGroup(val),
+                  ),
+                ),
+              ),
+            ],
+
+            // Conditional Department & Semester Selection (for Diploma)
+            if (controller.isDiplomaSelected) ...[
+              const SizedBox(height: 16),
+              Text(
+                'select_department'.tr,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primaryColor,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    isExpanded: true,
+                    hint: Text('department_hint'.tr),
+                    value: controller.selectedDepartment.value.isEmpty
+                        ? null
+                        : controller.selectedDepartment.value,
+                    items: controller.departmentOptions.map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value == 'others' ? 'others'.tr : value),
+                      );
+                    }).toList(),
+                    onChanged: (val) => controller.selectDepartment(val),
+                  ),
+                ),
+              ),
+
+              // Only show semester if department is selected
+              if (controller.selectedDepartment.value.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                Text(
+                  'select_semester'.tr,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      hint: Text('semester_hint'.tr),
+                      value: controller.selectedSemester.value.isEmpty
+                          ? null
+                          : controller.selectedSemester.value,
+                      items: controller.semesterOptions.map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (val) => controller.selectSemester(val),
+                    ),
+                  ),
+                ),
+              ],
+            ],
+
+            // Conditional "Others" input
+            if (controller.isOthersSelected) ...[
+              const SizedBox(height: 16),
+              TextField(
+                onChanged: (val) => controller.customClass.value = val,
+                decoration: InputDecoration(
+                  hintText: 'enter_class_hint'.tr,
+                  filled: true,
+                  fillColor: Colors.grey.shade100,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
                   ),
                 ),
               ),
             ],
           ],
-
-          // Conditional "Others" input
-          if (controller.isOthersSelected) ...[
-            const SizedBox(height: 16),
-            TextField(
-              onChanged: (val) => controller.customClass.value = val,
-              decoration: InputDecoration(
-                hintText: 'enter_class_hint'.tr,
-                filled: true,
-                fillColor: Colors.grey.shade100,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-          ],
-        ],
-      )),
+        ),
+      ),
     );
   }
 
@@ -399,9 +415,9 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
             ),
             boxShadow: [
               BoxShadow(
-                color: isSelected 
-                  ? AppColors.primaryColor.withOpacity(0.1) 
-                  : Colors.black.withOpacity(0.02),
+                color: isSelected
+                    ? AppColors.primaryColor.withOpacity(0.1)
+                    : Colors.black.withOpacity(0.02),
                 blurRadius: 15,
                 offset: const Offset(0, 8),
               ),
@@ -418,7 +434,9 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
                 child: Icon(
                   icon,
                   size: 40,
-                  color: isSelected ? AppColors.primaryColor : Colors.grey.shade400,
+                  color: isSelected
+                      ? AppColors.primaryColor
+                      : Colors.grey.shade400,
                 ),
               ),
               const SizedBox(height: 16),
@@ -434,10 +452,7 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
               Text(
                 descKey.tr,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey.shade600,
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
               ),
             ],
           ),

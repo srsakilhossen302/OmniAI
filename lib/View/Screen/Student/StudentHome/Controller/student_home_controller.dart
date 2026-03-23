@@ -1,16 +1,47 @@
 import 'package:get/get.dart';
+import '../Model/student_home_model.dart';
 
 class StudentHomeController extends GetxController {
-  // Mock data for student info
-  final studentName = 'Class 6 Student'.obs;
-  final greeting = 'good_morning'.obs;
-  
-  // Mock Recent Activity
-  final recentActivities = [
-    {'title': 'Math Problem #42', 'time': '2 hours ago', 'type': 'scanner'},
-    {'title': 'Science Assignment', 'time': '5 hours ago', 'type': 'assignment'},
-    {'title': 'History Quiz Prep', 'time': 'Yesterday', 'type': 'exam'},
-  ].obs;
+  // Observables for Models
+  final studentProfile = Rx<StudentProfileModel?>(null);
+  final recentActivities = <RecentActivityModel>[].obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    _fetchData();
+  }
+
+  void _fetchData() {
+    // Simulating fetching data from an API or database
+    studentProfile.value = StudentProfileModel(
+      name: 'Class 6 Student',
+      greeting: 'good_morning',
+    );
+
+    recentActivities.assignAll([
+      RecentActivityModel(
+        title: 'Science Exam Preparation',
+        time: '23/03/2026',
+        type: 'exam',
+      ),
+      RecentActivityModel(
+        title: 'History Assignment Draft',
+        time: '23/03/2026',
+        type: 'assignment',
+      ),
+      RecentActivityModel(
+        title: 'Math Problem Scan',
+        time: '23/03/2026',
+        type: 'scanner',
+      ),
+      RecentActivityModel(
+        title: 'Algebra Step-by-Step Solution',
+        time: '22/03/2026',
+        type: 'problem',
+      ),
+    ]);
+  }
 
   void logout() {
     // Implement logout logic

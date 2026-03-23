@@ -53,6 +53,10 @@ class AppTranslations extends Translations {
           'problem_solution_desc': 'Get step by step solutions for any problem',
           'recent_activity': 'Recent Activity',
           'view_all': 'View All',
+          'my_library': 'My Library',
+          'my_library_desc': 'Access your saved PDFs and notes',
+          'chat_with_ai': 'Chat with AI',
+          'chat_with_ai_desc': 'Ask questions and get instant answers',
         },
         'bn_BD': {
           'choose_language': 'আপনার ভাষা নির্বাচন করুন',
@@ -104,6 +108,10 @@ class AppTranslations extends Translations {
           'problem_solution_desc': 'যেকোনো সমস্যার ধাপে ধাপে সমাধান পান',
           'recent_activity': 'সাম্প্রতিক কার্যকলাপ',
           'view_all': 'সব দেখুন',
+          'my_library': 'আমার লাইব্রেরি',
+          'my_library_desc': 'আপনার সেভ করা পিডিএফ এবং নোটগুলি দেখুন',
+          'chat_with_ai': 'এআই এর সাথে চ্যাট',
+          'chat_with_ai_desc': 'প্রশ্ন জিজ্ঞাসা করুন এবং তাৎক্ষণিক উত্তর পান',
         },
         'hi_IN': {
           'choose_language': 'अपनी भाषा चुनें',
@@ -155,6 +163,10 @@ class AppTranslations extends Translations {
           'problem_solution_desc': 'किसी भी समस्या का चरण-दर-चरण समाधान प्राप्त करें',
           'recent_activity': 'हाल की गतिविधि',
           'view_all': 'सभी देखें',
+          'my_library': 'मेरी लाइब्रेरी',
+          'my_library_desc': 'अपने सहेजे गए पीडीएफ और नोट्स देखें',
+          'chat_with_ai': 'एआई के साथ चैट करें',
+          'chat_with_ai_desc': 'प्रश्न पूछें और तुरंत उत्तर प्राप्त करें',
         },
       };
 }
