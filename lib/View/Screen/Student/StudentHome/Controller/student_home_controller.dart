@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import '../Model/student_home_model.dart';
 import '../../MyLibrary/View/library_screen.dart';
 import '../../AIScanner/View/ai_scanner_screen.dart';
+import '../../ChatWithAI/View/ai_chat_screen.dart';
 
 class StudentHomeController extends GetxController {
   // Observables for Models
@@ -59,7 +60,7 @@ class StudentHomeController extends GetxController {
   }
 
   void openChatWithAI() {
-    // Navigate to Chat
+    Get.to(() => const AIChatScreen(), transition: Transition.rightToLeft);
   }
 
   void openAIScanner() {

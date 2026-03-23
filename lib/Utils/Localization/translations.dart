@@ -76,6 +76,7 @@ class AppTranslations extends Translations {
           'retake': 'Retake',
           'scan_solve': 'Scan & Solve with AI',
           'processing_ai': 'Processing with AI...',
+          'add_instruction': 'Add instructions (optional)...',
         },
         'bn_BD': {
           'choose_language': 'আপনার ভাষা নির্বাচন করুন',
@@ -150,6 +151,7 @@ class AppTranslations extends Translations {
           'retake': 'আবার তুলুন',
           'scan_solve': 'এআই দিয়ে স্ক্যান এবং সমাধান করুন',
           'processing_ai': 'এআই দিয়ে প্রক্রিয়া করা হচ্ছে...',
+          'add_instruction': 'নির্দেশনা যোগ করুন (ঐচ্ছিক)...',
         },
         'hi_IN': {
           'choose_language': 'अपनी भाषा चुनें',
@@ -224,6 +226,7 @@ class AppTranslations extends Translations {
           'retake': 'दोबारा लें',
           'scan_solve': 'एआई के साथ स्कैन और हल करें',
           'processing_ai': 'एआई के साथ संसाधित किया जा रहा है...',
+          'add_instruction': 'निर्देश जोड़ें (वैकल्पिक)...',
         },
       };
 }

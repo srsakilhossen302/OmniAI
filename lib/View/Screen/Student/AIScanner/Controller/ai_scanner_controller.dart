@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:camera/camera.dart';
+import '../../ChatWithAI/View/ai_chat_screen.dart';
 import 'dart:io';
 
 class AIScannerController extends GetxController {
@@ -13,6 +15,8 @@ class AIScannerController extends GetxController {
 
   final capturedImage = Rx<File?>(null);
   final isProcessing = false.obs;
+  
+  final promptController = TextEditingController();
 
   @override
   void onInit() {
@@ -43,6 +47,7 @@ class AIScannerController extends GetxController {
   @override
   void onClose() {
     cameraController?.dispose();
+    promptController.dispose();
     super.onClose();
   }
 
@@ -89,8 +94,8 @@ class AIScannerController extends GetxController {
     await Future.delayed(const Duration(milliseconds: 2500));
     isProcessing.value = false;
     
-    // TODO: Route to results page
-    Get.snackbar('Success', 'AI analysis complete!', snackPosition: SnackPosition.BOTTOM);
+    // Route to results page showing the nice chat answer
+    Get.to(() => const AIChatScreen(), transition: Transition.rightToLeft);
   }
 
   void retake() {
