@@ -1,3 +1,7 @@
+import 'package:omniai/View/Screen/Student/StudentHome/View/student_home_screen.dart';
+import 'package:omniai/View/Screen/Teacher/TeacherHome/View/teacher_home_screen.dart';
+import 'package:omniai/service/firebase_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -132,4 +136,44 @@ class RoleSelectionController extends GetxController {
     }
     return true;
   }
+
+  Future<void> completeProfile() async {
+    if (!canContinue) return;
+
+    final firebaseService = Get.find<FirebaseService>();
+    final uid = firebaseService.auth.currentUser?.uid ?? 'anonymous_${DateTime.now().millisecondsSinceEpoch}';
+
+    Map<String, dynamic> userData = {
+      'role': selectedRole.value,
+      'country': countryCode.value,
+      'updatedAt': FieldValue.serverTimestamp(),
+    };
+
+    if (isStudent) {
+      userData.addAll({
+        'class': selectedClass.value,
+        'customClass': customClass.value,
+        'department': selectedDepartment.value,
+        'semester': selectedSemester.value,
+        'group': selectedGroup.value,
+      });
+    } else if (isTeacher) {
+      userData.addAll({
+        'profession': profession.value,
+      });
+    }
+
+    try {
+      await firebaseService.saveUserProfile(uid: uid, data: userData);
+      
+      if (isStudent) {
+        Get.offAll(() => const StudentHomeScreen());
+      } else {
+        Get.offAll(() => const TeacherHomeScreen());
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to save profile: $e');
+    }
+  }
 }
+

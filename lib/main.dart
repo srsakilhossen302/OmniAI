@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:omniai/View/Screen/SplashScreen/splash_screen.dart';
 import 'package:omniai/Utils/StaticString/static_string.dart';
 import 'package:omniai/Utils/Localization/translations.dart';
 import 'package:omniai/View/Screen/LanguageSelection/Controller/language_controller.dart';
+import 'package:omniai/service/firebase_service.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   Get.put(LanguageController());
+  Get.put(FirebaseService());
   runApp(const MyApp());
 }
 

@@ -3,9 +3,6 @@ import 'package:get/get.dart';
 import '../../../Utils/AppColors/app_colors.dart';
 import '../../../Controller/role_selection_controller.dart';
 
-import '../Student/StudentHome/View/student_home_screen.dart';
-import '../Teacher/TeacherHome/View/teacher_home_screen.dart';
-
 class RoleSelectionScreen extends GetView<RoleSelectionController> {
   const RoleSelectionScreen({super.key});
 
@@ -117,13 +114,7 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
                 height: 56,
                 child: ElevatedButton(
                   onPressed: controller.canContinue
-                      ? () {
-                          if (controller.isStudent) {
-                            Get.to(() => const StudentHomeScreen());
-                          } else {
-                            Get.to(() => const TeacherHomeScreen());
-                          }
-                        }
+                      ? () => controller.completeProfile()
                       : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(
