@@ -4,6 +4,7 @@ import '../../MyLibrary/View/library_screen.dart';
 import '../../AIScanner/View/ai_scanner_screen.dart';
 import '../../ChatWithAI/View/ai_chat_screen.dart';
 import '../../AssignmentWriter/View/assignment_writer_screen.dart';
+import '../../ExamPreparation/View/exam_prep_screen.dart';
 
 class StudentHomeController extends GetxController {
   // Observables for Models
@@ -73,6 +74,6 @@ class StudentHomeController extends GetxController {
   }
 
   void openExamPrep() {
-    // Navigate to Exam Prep
+    Get.to(() => const ExamPrepScreen(), transition: Transition.rightToLeft);
   }
 }

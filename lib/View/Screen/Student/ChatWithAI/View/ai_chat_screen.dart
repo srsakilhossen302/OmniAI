@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import '../../AIScanner/View/ai_scanner_screen.dart';
 import '../../AssignmentWriter/View/assignment_writer_screen.dart';
+import '../../ExamPreparation/View/exam_prep_screen.dart';
 import '../Controller/ai_chat_controller.dart';
 import '../Model/ai_chat_model.dart';
 
@@ -246,6 +247,9 @@ class AIChatScreen extends StatelessWidget {
               if (controller.source.value == 'scanner') {
                 icon = const Icon(Icons.camera_alt_outlined, color: Color(0xFF3B82F6), size: 24);
                 onTap = () => Get.to(() => const AIScannerScreen());
+              } else if (controller.source.value == 'exam_prep') {
+                icon = const Icon(Icons.menu_book, color: Color(0xFF3B82F6), size: 24);
+                onTap = () => Get.to(() => const ExamPrepScreen());
               } else {
                 // assignment writer
                 icon = const Icon(Icons.edit_document, color: Color(0xFF3B82F6), size: 24);
