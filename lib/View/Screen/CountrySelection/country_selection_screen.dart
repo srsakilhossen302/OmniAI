@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:country_picker/country_picker.dart';
 import '../../../Utils/AppColors/app_colors.dart';
 import '../../../Utils/StaticString/static_string.dart';
+import '../RoleSelection/role_selection_screen.dart';
 
 class CountrySelectionScreen extends StatefulWidget {
   const CountrySelectionScreen({super.key});
@@ -188,7 +189,10 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: _selectedCountry == null ? null : () {
-                        // Navigate to next
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const RoleSelectionScreen()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFA5D6A7), // Greenish from image
