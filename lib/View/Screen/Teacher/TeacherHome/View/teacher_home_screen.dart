@@ -94,7 +94,7 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen>
                     subtitle: 'report_drafter_desc'.tr,
                     icon: Icons.article_outlined,
                     iconColor: const Color(0xFF0EA5E9),
-                    onTap: () {},
+                    onTap: () => controller.openReportDrafter(),
                   ),
                 ),
                 const SizedBox(height: 20),

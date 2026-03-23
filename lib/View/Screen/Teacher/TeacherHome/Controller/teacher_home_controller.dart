@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../Student/ChatWithAI/View/ai_chat_screen.dart';
 import '../../QuestionGenerator/View/question_generator_screen.dart';
 import '../../TeacherLibrary/View/teacher_library_screen.dart';
+import '../../ReportDrafter/View/report_drafter_screen.dart';
 
 class TeacherProfileModel {
   final String name;
@@ -71,6 +72,10 @@ class TeacherHomeController extends GetxController {
 
   void openQuestionGenerator() {
     Get.to(() => const QuestionGeneratorScreen());
+  }
+
+  void openReportDrafter() {
+    Get.to(() => const ReportDrafterScreen());
   }
 
   void openAIAssistant() {
