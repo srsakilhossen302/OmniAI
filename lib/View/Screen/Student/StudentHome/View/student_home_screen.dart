@@ -97,9 +97,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen>
                     subtitle: 'problem_solution_desc'.tr,
                     icon: Icons.lightbulb_outline,
                     iconColor: const Color(0xFF8B5CF6), // Purple
-                    onTap: () {
-                      // Handle Problem Solution
-                    },
+                    onTap: controller.openProblemSolution,
                   ),
                 ),
                 const SizedBox(height: 32),

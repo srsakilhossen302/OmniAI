@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../Model/ai_chat_model.dart';
 
 class AIChatController extends GetxController {
@@ -10,6 +12,28 @@ class AIChatController extends GetxController {
   final messages = <AIChatMessage>[].obs;
   
   final source = ''.obs;
+
+  // Image Picking
+  final selectedImage = Rx<File?>(null);
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> pickCamera() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      selectedImage.value = File(pickedFile.path);
+    }
+  }
+
+  Future<void> pickGallery() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      selectedImage.value = File(pickedFile.path);
+    }
+  }
+
+  void removeImage() {
+    selectedImage.value = null;
+  }
 
   @override
   void onInit() {
@@ -47,10 +71,15 @@ class AIChatController extends GetxController {
   }
 
   void sendMessage() {
-    if (textController.text.trim().isEmpty) return;
+    final text = textController.text.trim();
+    if (text.isEmpty && selectedImage.value == null) return;
     
-    final prompt = textController.text.trim();
+    final prompt = text;
+    final img = selectedImage.value;
+    
+    // Clear Input
     textController.clear();
+    selectedImage.value = null;
     
     // Add user message to UI immediately
     messages.insert(0,
@@ -58,6 +87,7 @@ class AIChatController extends GetxController {
         text: prompt,
         isUser: true,
         timestamp: DateTime.now(),
+        image: img,
       )
     );
     

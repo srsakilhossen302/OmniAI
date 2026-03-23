@@ -57,18 +57,18 @@ class ExamPrepScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Exam Preparation',
-                style: TextStyle(
+              Text(
+                'exam_prep_title'.tr,
+                style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
               ),
               const SizedBox(height: 4),
-              const Text(
-                'Curriculum-specific study guide',
-                style: TextStyle(
+              Text(
+                'exam_prep_subtitle'.tr,
+                style: const TextStyle(
                   fontSize: 14,
                   color: Colors.white70,
                 ),
@@ -97,27 +97,27 @@ class ExamPrepScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Create Your Study Plan',
-            style: TextStyle(
+          Text(
+            'create_study_plan'.tr,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Color(0xFF1E3A8A), // Deep Blue Title
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
-            "Enter your exam details and we'll generate a personalized preparation guide",
-            style: TextStyle(
+          Text(
+            'enter_exam_details'.tr,
+            style: const TextStyle(
               fontSize: 14,
               color: Color(0xFF64748B),
               height: 1.5,
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
-            'Exam Name',
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
+          Text(
+            'exam_name'.tr,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
           ),
           const SizedBox(height: 8),
           Container(
@@ -127,18 +127,18 @@ class ExamPrepScreen extends StatelessWidget {
             ),
             child: TextField(
               controller: controller.examNameController,
-              decoration: const InputDecoration(
-                hintText: 'e.g., SSC Mathematics, HSC Physics, Fi',
-                hintStyle: TextStyle(color: Color(0xFF94A3B8)),
+              decoration: InputDecoration(
+                hintText: 'exam_name_hint'.tr,
+                hintStyle: const TextStyle(color: Color(0xFF94A3B8)),
                 border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
               ),
             ),
           ),
           const SizedBox(height: 20),
-          const Text(
-            'Book Names',
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
+          Text(
+            'book_names'.tr,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
           ),
           const SizedBox(height: 8),
           Container(
@@ -149,11 +149,11 @@ class ExamPrepScreen extends StatelessWidget {
             child: TextField(
               controller: controller.bookNamesController,
               maxLines: 4,
-              decoration: const InputDecoration(
-                hintText: 'Enter book names separated by commas\ne.g., NCTB Mathematics Book, Guide to Algebra, Practice Problems',
-                hintStyle: TextStyle(color: Color(0xFF94A3B8), height: 1.5),
+              decoration: InputDecoration(
+                hintText: 'book_names_hint'.tr,
+                hintStyle: const TextStyle(color: Color(0xFF94A3B8), height: 1.5),
                 border: InputBorder.none,
-                contentPadding: EdgeInsets.all(16),
+                contentPadding: const EdgeInsets.all(16),
               ),
             ),
           ),
@@ -179,7 +179,7 @@ class ExamPrepScreen extends StatelessWidget {
                   ? const _SpinningIcon(icon: Icons.menu_book)
                   : const Icon(Icons.menu_book, color: Colors.white, size: 20),
                 label: Text(
-                  isGen ? 'Generating Study Plan...' : 'Generate Study Plan',
+                  isGen ? 'generating_study_plan'.tr : 'generate_study_plan_btn'.tr,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -216,19 +216,19 @@ class ExamPrepScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "What you'll get:",
-            style: TextStyle(
+          Text(
+            'what_you_will_get'.tr,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Color(0xFF1E3A8A), // Deep Blue Title
             ),
           ),
           const SizedBox(height: 16),
-          _buildCheckLine('Week-by-week study schedule'),
-          _buildCheckLine('Curriculum-specific shortcuts and tips'),
-          _buildCheckLine('Important topics to focus on'),
-          _buildCheckLine('Practice strategies and time management'),
+          _buildCheckLine('benefit_1'.tr),
+          _buildCheckLine('benefit_2'.tr),
+          _buildCheckLine('benefit_3'.tr),
+          _buildCheckLine('benefit_4'.tr),
         ],
       ),
     );

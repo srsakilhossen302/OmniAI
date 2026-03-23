@@ -59,18 +59,18 @@ class AssignmentWriterScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Assignment Writer',
-                style: TextStyle(
+              Text(
+                'assignment_writer_title'.tr,
+                style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
               ),
               const SizedBox(height: 4),
-              const Text(
-                'AI-powered assignment generator',
-                style: TextStyle(
+              Text(
+                'assignment_writer_subtitle'.tr,
+                style: const TextStyle(
                   fontSize: 14,
                   color: Colors.white70,
                 ),
@@ -99,18 +99,18 @@ class AssignmentWriterScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Share Your Assignment Idea',
-            style: TextStyle(
+          Text(
+            'share_assignment_idea'.tr,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Color(0xFF1E3A8A), // Deep Blue Title
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Describe your assignment topic, and our AI will generate a structured draft for you',
-            style: TextStyle(
+          Text(
+            'describe_assignment_topic'.tr,
+            style: const TextStyle(
               fontSize: 14,
               color: Color(0xFF64748B),
               height: 1.5,
@@ -125,14 +125,14 @@ class AssignmentWriterScreen extends StatelessWidget {
             child: TextField(
               controller: controller.topicController,
               maxLines: 5,
-              decoration: const InputDecoration(
-                hintText: 'Example: Write an assignment about Climate Change and its impact on global ecosystems',
-                hintStyle: TextStyle(
+              decoration: InputDecoration(
+                hintText: 'assignment_hint'.tr,
+                hintStyle: const TextStyle(
                   color: Color(0xFF94A3B8),
                   height: 1.5,
                 ),
                 border: InputBorder.none,
-                contentPadding: EdgeInsets.all(16),
+                contentPadding: const EdgeInsets.all(16),
               ),
             ),
           ),
@@ -158,7 +158,7 @@ class AssignmentWriterScreen extends StatelessWidget {
                   ? const _SpinningIcon(icon: Icons.auto_awesome)
                   : const Icon(Icons.auto_awesome, color: Colors.white, size: 20),
                 label: Text(
-                  isGen ? 'Generating Assignment...' : 'Generate Assignment',
+                  isGen ? 'generating_assignment'.tr : 'generate_assignment_btn'.tr,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -195,19 +195,19 @@ class AssignmentWriterScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Tips for better results:',
-            style: TextStyle(
+          Text(
+            'tips_better_results'.tr,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Color(0xFF1E3A8A), // Deep Blue Title
             ),
           ),
           const SizedBox(height: 16),
-          _buildTipLine('Be specific about your topic and requirements'),
-          _buildTipLine('Mention the subject area (e.g., Science, History, Literature)'),
-          _buildTipLine('Include any specific points you want to cover'),
-          _buildTipLine('Specify the academic level if relevant'),
+          _buildTipLine('tip_specific_topic'.tr),
+          _buildTipLine('tip_subject_area'.tr),
+          _buildTipLine('tip_specific_points'.tr),
+          _buildTipLine('tip_academic_level'.tr),
         ],
       ),
     );
@@ -259,22 +259,22 @@ class AssignmentWriterScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Example Topics:',
-            style: TextStyle(
+          Text(
+            'example_topics'.tr,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Color(0xFF1E3A8A), // Deep Blue Title
             ),
           ),
           const SizedBox(height: 24),
-          _buildTopicItem(controller, 'The Impact of Social Media on Modern Society'),
+          _buildTopicItem(controller, 'topic_1'.tr),
           const SizedBox(height: 24),
-          _buildTopicItem(controller, 'Renewable Energy Sources and Sustainability'),
+          _buildTopicItem(controller, 'topic_2'.tr),
           const SizedBox(height: 24),
-          _buildTopicItem(controller, 'The Role of Artificial Intelligence in Healthcare'),
+          _buildTopicItem(controller, 'topic_3'.tr),
           const SizedBox(height: 24),
-          _buildTopicItem(controller, 'Historical Significance of the Industrial Revolution'),
+          _buildTopicItem(controller, 'topic_4'.tr),
         ],
       ),
     );

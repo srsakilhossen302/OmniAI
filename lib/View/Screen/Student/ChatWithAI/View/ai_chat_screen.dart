@@ -37,17 +37,17 @@ class AIChatScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'AI Assistant',
-                  style: TextStyle(
+                Text(
+                  'ai_assistant_title'.tr,
+                  style: const TextStyle(
                     color: Color(0xFF1E293B),
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
                 ),
                 Text(
-                  'Online',
-                  style: TextStyle(
+                  'online'.tr,
+                  style: const TextStyle(
                     color: Colors.blue,
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
@@ -96,12 +96,12 @@ class AIChatScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 24, left: 16),
       child: Row(
-        children: const [
-          Icon(Icons.auto_awesome, color: Color(0xFF3B82F6)),
-          SizedBox(width: 8),
+        children: [
+          const Icon(Icons.auto_awesome, color: Color(0xFF3B82F6)),
+          const SizedBox(width: 8),
           Text(
-            'AI is typing...',
-            style: TextStyle(color: Color(0xFF64748B), fontStyle: FontStyle.italic),
+            'ai_typing'.tr,
+            style: const TextStyle(color: Color(0xFF64748B), fontStyle: FontStyle.italic),
           ),
         ],
       ),
@@ -124,9 +124,28 @@ class AIChatScreen extends StatelessWidget {
               bottomRight: Radius.circular(4), // Pointy chat tail
             ),
           ),
-          child: Text(
-            message.text,
-            style: const TextStyle(color: Colors.white, fontSize: 16, height: 1.4),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              if (message.image != null)
+                Padding(
+                  padding: EdgeInsets.only(bottom: message.text.isNotEmpty ? 12 : 0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.file(
+                      message.image!,
+                      height: 180,
+                      width: 200,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              if (message.text.isNotEmpty)
+                Text(
+                  message.text,
+                  style: const TextStyle(color: Colors.white, fontSize: 16, height: 1.4),
+                ),
+            ],
           ),
         ),
       ),
@@ -234,11 +253,56 @@ class AIChatScreen extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: SafeArea(
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Obx(() {
-              if (controller.source.value.isEmpty) {
-                return const SizedBox.shrink(); // Hide if accessed locally
+              if (controller.selectedImage.value == null) return const SizedBox.shrink();
+              return Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 12, left: 12),
+                    height: 90,
+                    width: 90,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      image: DecorationImage(
+                        image: FileImage(controller.selectedImage.value!),
+                        fit: BoxFit.cover,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: -8,
+                    right: -8,
+                    child: GestureDetector(
+                      onTap: controller.removeImage,
+                      child: Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: const BoxDecoration(
+                          color: Colors.redAccent,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(Icons.close, color: Colors.white, size: 16),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }),
+            Obx(() {
+              if (controller.source.value.isEmpty || 
+                  controller.source.value == 'problem_solution' || 
+                  controller.source.value == 'chat_with_ai') {
+                return const SizedBox.shrink(); // Hide if accessed from home tiles
               }
               
               Widget icon;
@@ -250,40 +314,78 @@ class AIChatScreen extends StatelessWidget {
               } else if (controller.source.value == 'exam_prep') {
                 icon = const Icon(Icons.menu_book, color: Color(0xFF3B82F6), size: 24);
                 onTap = () => Get.to(() => const ExamPrepScreen());
-              } else {
-                // assignment writer
+              } else if (controller.source.value == 'assignment') {
                 icon = const Icon(Icons.edit_document, color: Color(0xFF3B82F6), size: 24);
                 onTap = () => Get.to(() => const AssignmentWriterScreen());
+              } else {
+                return const SizedBox.shrink();
               }
-              
+
               return Padding(
-                padding: const EdgeInsets.only(right: 12),
-                child: GestureDetector(
-                  onTap: onTap,
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: onTap,
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFEFF6FF), // very light blue background
+                          shape: BoxShape.circle,
+                        ),
+                        child: icon,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                    controller.source.value == 'scanner' ? 'ai_scanner'.tr :
+                    controller.source.value == 'exam_prep' ? 'exam_prep'.tr :
+                    controller.source.value == 'assignment' ? 'write_assignment'.tr : '',
+                      style: const TextStyle(color: Color(0xFF3B82F6), fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+              );
+            }),
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: controller.pickCamera,
                   child: Container(
                     padding: const EdgeInsets.all(10),
                     decoration: const BoxDecoration(
                       color: Color(0xFFEFF6FF), // very light blue background
                       shape: BoxShape.circle,
                     ),
-                    child: icon,
+                    child: const Icon(Icons.camera_alt_outlined, color: Color(0xFF3B82F6), size: 24),
                   ),
                 ),
-              );
-            }),
-            Expanded(
-              child: Container(
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: controller.pickGallery,
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFEFF6FF), // very light blue background
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.image_outlined, color: Color(0xFF3B82F6), size: 24),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Container(
                 decoration: BoxDecoration(
                   color: const Color(0xFFF1F5F9), // Light grey matching input
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: TextField(
                   controller: controller.textController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Ask a follow-up question...',
-                    hintStyle: TextStyle(color: Color(0xFF94A3B8)),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                    hintText: 'ask_follow_up'.tr,
+                    hintStyle: const TextStyle(color: Color(0xFF94A3B8)),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
                   ),
                   onSubmitted: (_) => controller.sendMessage(),
                 ),
@@ -292,12 +394,21 @@ class AIChatScreen extends StatelessWidget {
             const SizedBox(width: 12),
             GestureDetector(
               onTap: controller.sendMessage,
-              child: const Icon(Icons.send_outlined, color: Color(0xFF94A3B8), size: 26),
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: const BoxDecoration(
+                  color: Color(0xFF3B82F6), // Sending blue bubble
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(Icons.send, color: Colors.white, size: 20),
+              ),
             ),
           ],
         ),
-      ),
-    );
-  }
+      ],
+    ),
+  ),
+);
+}
 }
 

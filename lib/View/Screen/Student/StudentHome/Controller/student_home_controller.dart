@@ -48,6 +48,10 @@ class StudentHomeController extends GetxController {
     ]);
   }
 
+  void openProblemSolution() {
+    Get.to(() => const AIChatScreen(), arguments: {'source': 'problem_solution'}, transition: Transition.rightToLeft);
+  }
+
   void logout() {
     // Implement logout logic
     Get.back();
