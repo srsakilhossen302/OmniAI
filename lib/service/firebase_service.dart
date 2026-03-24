@@ -6,7 +6,6 @@ class FirebaseService extends GetxService {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  // Observable for current user
   late Rx<User?> currentUser;
 
   @override
@@ -18,7 +17,28 @@ class FirebaseService extends GetxService {
     });
   }
 
-  // Common method to save user profile
+  // Login anonymously and return the user
+  Future<User?> loginAnonymously() async {
+    try {
+      UserCredential userCredential = await auth.signInAnonymously();
+      return userCredential.user;
+    } catch (e) {
+      print("Firebase Anonymous Login Error: $e");
+      return null;
+    }
+  }
+
+  // Check if user has a profile in Firestore
+  Future<bool> hasCompletedProfile(String uid) async {
+    try {
+      DocumentSnapshot doc = await firestore.collection('users').doc(uid).get();
+      return doc.exists;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // Save user profile
   Future<void> saveUserProfile({
     required String uid,
     required Map<String, dynamic> data,

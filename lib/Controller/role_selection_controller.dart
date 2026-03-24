@@ -1,5 +1,6 @@
 import 'package:omniai/View/Screen/Student/StudentHome/View/student_home_screen.dart';
 import 'package:omniai/View/Screen/Teacher/TeacherHome/View/teacher_home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:omniai/service/firebase_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
@@ -141,9 +142,22 @@ class RoleSelectionController extends GetxController {
     if (!canContinue) return;
 
     final firebaseService = Get.find<FirebaseService>();
-    final uid = firebaseService.auth.currentUser?.uid ?? 'anonymous_${DateTime.now().millisecondsSinceEpoch}';
+    
+    // Perform Anonymous login if no user exists
+    User? currentUser = firebaseService.auth.currentUser;
+    if (currentUser == null) {
+      currentUser = await firebaseService.loginAnonymously();
+    }
+
+    if (currentUser == null) {
+      Get.snackbar('Error', 'Failed to connect to backend. Please try again.');
+      return;
+    }
+
+    final uid = currentUser.uid;
 
     Map<String, dynamic> userData = {
+      'uid': uid,
       'role': selectedRole.value,
       'country': countryCode.value,
       'updatedAt': FieldValue.serverTimestamp(),

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:get/get.dart';
 import '../../../Utils/AppColors/app_colors.dart';
 import '../../../Utils/StaticString/static_string.dart';
+import '../../../service/firebase_service.dart';
 import '../LanguageSelection/language_selection_screen.dart';
+import '../Student/StudentHome/View/student_home_screen.dart';
+import '../Teacher/TeacherHome/View/teacher_home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -27,12 +31,38 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
-    Timer(const Duration(seconds: 5), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const LanguageSelectionScreen()),
-      );
-    });
+    _handleNavigation();
   }
+
+  Future<void> _handleNavigation() async {
+    final firebaseService = Get.find<FirebaseService>();
+    final user = firebaseService.auth.currentUser;
+
+    // Simulate splash delay
+    await Future.delayed(const Duration(seconds: 3));
+
+    if (user != null) {
+      // Check if profile exists
+      final profile = await firebaseService.getUserProfile(user.uid);
+      
+      if (profile != null && profile.exists) {
+        final data = profile.data() as Map<String, dynamic>;
+        final role = data['role'] ?? '';
+        
+        if (role == 'student') {
+          Get.offAll(() => const StudentHomeScreen());
+          return;
+        } else if (role == 'job_holder') {
+          Get.offAll(() => const TeacherHomeScreen());
+          return;
+        }
+      }
+    }
+
+    // Default to Language Selection
+    Get.offAll(() => const LanguageSelectionScreen());
+  }
+
 
   @override
   void dispose() {

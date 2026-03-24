@@ -1,0 +1,66 @@
+W/GoogleApiManager(32426): Not showing notification since connectionResult is not user-facing: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+W/FlagRegistrar(32426): Failed to register com.google.android.gms.providerinstaller#com.omniai.omniai
+W/FlagRegistrar(32426): gfqk: 17: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+W/FlagRegistrar(32426): 	at gfqm.a(:com.google.android.gms@261035035@26.10.35 (260400-885717106):13)
+W/FlagRegistrar(32426): 	at heul.d(:com.google.android.gms@261035035@26.10.35 (260400-885717106):3)
+W/FlagRegistrar(32426): 	at heun.run(:com.google.android.gms@261035035@26.10.35 (260400-885717106):130)
+W/FlagRegistrar(32426): 	at hewu.execute(:com.google.android.gms@261035035@26.10.35 (260400-885717106):1)
+W/FlagRegistrar(32426): 	at heuv.f(:com.google.android.gms@261035035@26.10.35 (260400-885717106):1)
+W/FlagRegistrar(32426): 	at heuv.m(:com.google.android.gms@261035035@26.10.35 (260400-885717106):99)
+W/FlagRegistrar(32426): 	at heuv.r(:com.google.android.gms@261035035@26.10.35 (260400-885717106):17)
+W/FlagRegistrar(32426): 	at fxjh.hB(:com.google.android.gms@261035035@26.10.35 (260400-885717106):35)
+W/FlagRegistrar(32426): 	at fjxm.run(:com.google.android.gms@261035035@26.10.35 (260400-885717106):12)
+W/FlagRegistrar(32426): 	at hewu.execute(:com.google.android.gms@261035035@26.10.35 (260400-885717106):1)
+W/FlagRegistrar(32426): 	at fjxn.b(:com.google.android.gms@261035035@26.10.35 (260400-885717106):18)
+W/FlagRegistrar(32426): 	at fjyc.b(:com.google.android.gms@261035035@26.10.35 (260400-885717106):34)
+W/FlagRegistrar(32426): 	at fjye.d(:com.google.android.gms@261035035@26.10.35 (260400-885717106):25)
+W/FlagRegistrar(32426): 	at bgez.c(:com.google.android.gms@261035035@26.10.35 (260400-885717106):9)
+W/FlagRegistrar(32426): 	at bgho.q(:com.google.android.gms@261035035@26.10.35 (260400-885717106):48)
+W/FlagRegistrar(32426): 	at bgho.d(:com.google.android.gms@261035035@26.10.35 (260400-885717106):10)
+W/FlagRegistrar(32426): 	at bgho.g(:com.google.android.gms@261035035@26.10.35 (260400-885717106):191)
+W/FlagRegistrar(32426): 	at bgho.onConnectionFailed(:com.google.android.gms@261035035@26.10.35 (260400-885717106):2)
+W/FlagRegistrar(32426): 	at bghq.run(:com.google.android.gms@261035035@26.10.35 (260400-885717106):70)
+W/FlagRegistrar(32426): 	at android.os.Handler.handleCallback(Handler.java:959)
+W/FlagRegistrar(32426): 	at android.os.Handler.dispatchMessage(Handler.java:100)
+W/FlagRegistrar(32426): 	at cwdx.mn(:com.google.android.gms@261035035@26.10.35 (260400-885717106):1)
+W/FlagRegistrar(32426): 	at cwdx.dispatchMessage(:com.google.android.gms@261035035@26.10.35 (260400-885717106):5)
+W/FlagRegistrar(32426): 	at android.os.Looper.loopOnce(Looper.java:232)
+W/FlagRegistrar(32426): 	at android.os.Looper.loop(Looper.java:317)
+W/FlagRegistrar(32426): 	at android.os.HandlerThread.run(HandlerThread.java:85)
+W/FlagRegistrar(32426): Caused by: bgdg: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+W/FlagRegistrar(32426): 	at bhbb.a(:com.google.android.gms@261035035@26.10.35 (260400-885717106):15)
+W/FlagRegistrar(32426): 	at bgfc.a(:com.google.android.gms@261035035@26.10.35 (260400-885717106):1)
+W/FlagRegistrar(32426): 	at bgez.c(:com.google.android.gms@261035035@26.10.35 (260400-885717106):5)
+W/FlagRegistrar(32426): 	... 12 more
+I/m.omniai.omniai(32426): hiddenapi: Accessing hidden method Ljava/security/spec/ECParameterSpec;->getCurveName()Ljava/lang/String; (runtime_flags=0, domain=core-platform, api=unsupported) from Lcom/google/android/gms/org/conscrypt/Platform; (domain=app, TargetSdkVersion=36) using reflection: allowed
+I/m.omniai.omniai(32426): hiddenapi: Accessing hidden method Ldalvik/system/VMStack;->getStackClass2()Ljava/lang/Class; (runtime_flags=0, domain=core-platform, api=unsupported) from Lgzig; (domain=app, TargetSdkVersion=36) using reflection: allowed
+I/ProviderInstaller(32426): Installed default security provider GmsCore_OpenSSL
+I/m.omniai.omniai(32426): hiddenapi: Accessing hidden field Ljava/net/Socket;->impl:Ljava/net/SocketImpl; (runtime_flags=0, domain=core-platform, api=unsupported) from Lcom/google/android/gms/org/conscrypt/Platform; (domain=app, TargetSdkVersion=36) using reflection: allowed
+I/m.omniai.omniai(32426): hiddenapi: Accessing hidden method Ljava/security/spec/ECParameterSpec;->setCurveName(Ljava/lang/String;)V (runtime_flags=0, domain=core-platform, api=unsupported) from Lcom/google/android/gms/org/conscrypt/Platform; (domain=app, TargetSdkVersion=36) using reflection: allowed
+W/Firestore(32426): (26.1.0) [WriteStream]: (6e3ee9b) Stream closed with status: Status{code=PERMISSION_DENIED, description=Cloud Firestore API has not been used in project omniai-c0f6c before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=omniai-c0f6c then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., cause=null}.
+W/Firestore(32426): (26.1.0) [WriteStream]: (6e3ee9b) Stream closed with status: Status{code=PERMISSION_DENIED, description=Cloud Firestore API has not been used in project omniai-c0f6c before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=omniai-c0f6c then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., cause=null}.
+W/Firestore(32426): (26.1.0) [WriteStream]: (6e3ee9b) Stream closed with status: Status{code=PERMISSION_DENIED, description=Cloud Firestore API has not been used in project omniai-c0f6c before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=omniai-c0f6c then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., cause=null}.
+W/Firestore(32426): (26.1.0) [WriteStream]: (6e3ee9b) Stream closed with status: Status{code=PERMISSION_DENIED, description=Cloud Firestore API has not been used in project omniai-c0f6c before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=omniai-c0f6c then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., cause=null}.
+W/Firestore(32426): (26.1.0) [WriteStream]: (6e3ee9b) Stream closed with status: Status{code=PERMISSION_DENIED, description=Cloud Firestore API has not been used in project omniai-c0f6c before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=omniai-c0f6c then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., cause=null}.
+W/Firestore(32426): (26.1.0) [WriteStream]: (6e3ee9b) Stream closed with status: Status{code=PERMISSION_DENIED, description=Cloud Firestore API has not been used in project omniai-c0f6c before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=omniai-c0f6c then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., cause=null}.
+E/GoogleApiManager(32426): Failed to get service from broker. 
+E/GoogleApiManager(32426): java.lang.SecurityException: Unknown calling package name 'com.google.android.gms'.
+E/GoogleApiManager(32426): 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3241)
+E/GoogleApiManager(32426): 	at android.os.Parcel.createException(Parcel.java:3225)
+E/GoogleApiManager(32426): 	at android.os.Parcel.readException(Parcel.java:3208)
+E/GoogleApiManager(32426): 	at android.os.Parcel.readException(Parcel.java:3150)
+E/GoogleApiManager(32426): 	at bhdo.a(:com.google.android.gms@261035035@26.10.35 (260400-885717106):36)
+E/GoogleApiManager(32426): 	at bhbp.z(:com.google.android.gms@261035035@26.10.35 (260400-885717106):143)
+E/GoogleApiManager(32426): 	at bghq.run(:com.google.android.gms@261035035@26.10.35 (260400-885717106):42)
+E/GoogleApiManager(32426): 	at android.os.Handler.handleCallback(Handler.java:959)
+E/GoogleApiManager(32426): 	at android.os.Handler.dispatchMessage(Handler.java:100)
+E/GoogleApiManager(32426): 	at cwdx.mn(:com.google.android.gms@261035035@26.10.35 (260400-885717106):1)
+E/GoogleApiManager(32426): 	at cwdx.dispatchMessage(:com.google.android.gms@261035035@26.10.35 (260400-885717106):5)
+E/GoogleApiManager(32426): 	at android.os.Looper.loopOnce(Looper.java:232)
+E/GoogleApiManager(32426): 	at android.os.Looper.loop(Looper.java:317)
+E/GoogleApiManager(32426): 	at android.os.HandlerThread.run(HandlerThread.java:85)
+W/GoogleApiManager(32426): Not showing notification since connectionResult is not user-facing: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+W/Firestore(32426): (26.1.0) [WriteStream]: (6e3ee9b) Stream closed with status: Status{code=PERMISSION_DENIED, description=Cloud Firestore API has not been used in project omniai-c0f6c before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=omniai-c0f6c then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., cause=null}.
+W/Firestore(32426): (26.1.0) [WriteStream]: (6e3ee9b) Stream closed with status: Status{code=PERMISSION_DENIED, description=Cloud Firestore API has not been used in project omniai-c0f6c before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=omniai-c0f6c then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., cause=null}.
+W/Firestore(32426): (26.1.0) [WriteStream]: (6e3ee9b) Stream closed with status: Status{code=PERMISSION_DENIED, description=Cloud Firestore API has not been used in project omniai-c0f6c before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=omniai-c0f6c then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., cause=null}.
+W/Firestore(32426): (26.1.0) [WriteStream]: (6e3ee9b) Stream closed with status: Status{code=PERMISSION_DENIED, description=Cloud Firestore API has not been used in project omniai-c0f6c before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=omniai-c0f6c then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., cause=null}.
