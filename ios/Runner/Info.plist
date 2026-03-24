@@ -66,5 +66,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs camera access to scan problems and take photos for AI analysis.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs gallery access to upload images for AI analysis.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs microphone access for voice-to-text features.</string>
 </dict>
 </plist>

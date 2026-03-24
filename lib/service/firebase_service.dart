@@ -60,4 +60,21 @@ class FirebaseService extends GetxService {
       return null;
     }
   }
+
+  // Save AI Chat Message
+  Future<void> saveChatMessage({
+    required String uid,
+    required String text,
+    required bool isUser,
+  }) async {
+    try {
+      await firestore.collection('users').doc(uid).collection('chats').add({
+        'text': text,
+        'isUser': isUser,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+    } catch (e) {
+      print("Error saving chat message: $e");
+    }
+  }
 }

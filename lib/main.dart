@@ -7,6 +7,7 @@ import 'package:omniai/Utils/StaticString/static_string.dart';
 import 'package:omniai/Utils/Localization/translations.dart';
 import 'package:omniai/View/Screen/LanguageSelection/Controller/language_controller.dart';
 import 'package:omniai/service/firebase_service.dart';
+import 'package:omniai/service/ai_service.dart'; // Added import for AIService
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,6 +16,7 @@ void main() async {
   );
   Get.put(LanguageController());
   Get.put(FirebaseService());
+  Get.put(AIService()); // Added AIService registration
   runApp(const MyApp());
 }
 

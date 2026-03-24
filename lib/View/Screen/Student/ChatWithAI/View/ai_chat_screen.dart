@@ -214,11 +214,26 @@ class AIChatScreen extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        _buildActionButton(Icons.volume_up_outlined, 'Speak', const Color(0xFF4F46E5)),
+                        _buildActionButton(
+                          Icons.volume_up_outlined, 
+                          'Speak', 
+                          const Color(0xFF4F46E5),
+                          () => Get.find<AIChatController>().speak(message.text),
+                        ),
                         const SizedBox(width: 8),
-                        _buildActionButton(Icons.picture_as_pdf_outlined, 'PDF', const Color(0xFF2563EB)),
+                        _buildActionButton(
+                          Icons.picture_as_pdf_outlined, 
+                          'PDF', 
+                          const Color(0xFF2563EB),
+                          () => Get.find<AIChatController>().downloadAsPDF(message.text),
+                        ),
                         const SizedBox(width: 8),
-                        _buildActionButton(Icons.share_outlined, 'Share', const Color(0xFF2563EB)),
+                        _buildActionButton(
+                          Icons.share_outlined, 
+                          'Share', 
+                          const Color(0xFF2563EB),
+                          () {}, // Share logic can be added later
+                        ),
                       ],
                     ),
                   ),
@@ -231,9 +246,9 @@ class AIChatScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButton(IconData icon, String label, Color color) {
+  Widget _buildActionButton(IconData icon, String label, Color color, VoidCallback onPressed) {
     return OutlinedButton.icon(
-      onPressed: () {},
+      onPressed: onPressed,
       icon: Icon(icon, color: color, size: 18),
       label: Text(label, style: TextStyle(color: color, fontWeight: FontWeight.w600)),
       style: OutlinedButton.styleFrom(
